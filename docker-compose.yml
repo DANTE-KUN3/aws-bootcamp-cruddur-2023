@@ -31,7 +31,7 @@ services:
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
       AWS_REGION: "us-east-1"
     command:
-      -"xray -o -b xray-daemon:2000"
+      - "xray -o -b xray-daemon:2000"
     ports:
       - 2000:2000/udp
 
