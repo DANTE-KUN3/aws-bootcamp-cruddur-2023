@@ -27,10 +27,10 @@ class UserActivities:
       #xray
     subsegment = xray_recorder.begin_subsegment('mock-data')
     dict={
-      "now":now.isoformat()
+      "now":now.isoformat(),
        "results-size":len(model['data'])
     }
-    segment.put_metadata('key',dict,'namespace')
+    subsegment.put_metadata('key',dict,'namespace')
 
     return model
 
