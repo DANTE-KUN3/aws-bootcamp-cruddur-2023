@@ -41,6 +41,7 @@ from flask import got_request_exception
 
 
 
+
 #configuring  Logger to use cloudwatch
 
 # LOGGER=logging.getLogger(__name__)
@@ -108,16 +109,12 @@ cors = CORS(
   methods="OPTIONS,GET,HEAD,POST"
 )
 
-
-#rollbar
-rollbar_access_token=os.getenv('ROLLBAR_ACCESS_TOKEN')
-
 @app.before_request
 def init_rollbar():
     """init rollbar module"""
     rollbar.init(
         # access token
-       rollbar_access_token,
+        '53558dfef99540d0812e3e417e5fd21d',
         # environment name
         'production',
         # server root directory, makes tracebacks prettier
@@ -127,6 +124,7 @@ def init_rollbar():
 
     # send exceptions from `app` to rollbar, using flask's signal system.
     got_request_exception.connect(rollbar.contrib.flask.report_exception, app)
+
 
 
 # @app.after_request
