@@ -1,6 +1,6 @@
 import './HomeFeedPage.css';
 import React from "react";
-
+import { useEffect } from 'react';
 import DesktopNavigation  from '../components/DesktopNavigation';
 import DesktopSidebar     from '../components/DesktopSidebar';
 import ActivityFeed from '../components/ActivityFeed';
@@ -8,7 +8,8 @@ import ActivityForm from '../components/ActivityForm';
 import ReplyForm from '../components/ReplyForm';
 
 // [TODO] Authenication
-import Cookies from 'js-cookie'
+
+import {Auth} from 'aws-amplify';
 
 export default function HomeFeedPage() {
   const [activities, setActivities] = React.useState([]);
@@ -36,16 +37,28 @@ export default function HomeFeedPage() {
   };
 
   const checkAuth = async () => {
-    console.log('checkAuth')
-    // [TODO] Authenication
-    if (Cookies.get('user.logged_in')) {
+    console.log('checkAuth');
+    try {
+      // Check if the user is authenticated
+      const cognito_user = await Auth.currentAuthenticatedUser();
+  
+      // If authenticated, set user details in the state
       setUser({
-        display_name: Cookies.get('user.name'),
-        handle: Cookies.get('user.username')
-      })
+        display_name: cognito_user.attributes.name, // Adjust based on your user attributes
+        handle: cognito_user.attributes.preferred_username
+      });
+  
+    } catch (error) {
+      // If not authenticated, handle the error or leave the user state empty
+      console.error('Authentication error:', error);
     }
   };
-
+  
+  // Example usage of checkAuth in a useEffect hook
+  useEffect(() => {
+    checkAuth();
+  }, []); // Run on component mount
+  
   React.useEffect(()=>{
     //prevents double call
     if (dataFetchedRef.current) return;
