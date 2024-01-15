@@ -7,14 +7,17 @@ tasks:
       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
       unzip awscliv2.zip
       sudo ./aws/install
+      aws --version  # Verify the installation
       cd $THEIA_WORKSPACE_ROOT
+
   - name: react-js
     command:
-     cd frontend-react-js && npm i
-     
+      cd frontend-react-js && npm i
+
 vscode:
   extensions:
     - 42Crunch.vscode-openapi
+
 ports:
   - name: frontend
     port: 3000
