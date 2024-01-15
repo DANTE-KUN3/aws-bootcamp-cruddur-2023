@@ -18,8 +18,10 @@ export default function SigninPage() {
   
     try {
       const user = await Auth.signIn(email, password);
+      console.log('user',user)
       localStorage.setItem('access_token', user.signInUserSession.accessToken.jwtToken);
       window.location.href = '/';
+      
     } catch (error) {
       console.log('Error!', error);
       // Handle error or set error state accordingly
