@@ -35,24 +35,25 @@ export default function HomeFeedPage() {
       console.log(err);
     }
   };
-
   const checkAuth = async () => {
-    console.log('checkAuth');
     try {
-      // Check if the user is authenticated
-      const cognito_user = await Auth.currentAuthenticatedUser();
-  
-      // If authenticated, set user details in the state
-      setUser({
-        display_name: cognito_user.attributes.name, // Adjust based on your user attributes
-        handle: cognito_user.attributes.preferred_username
+      const user = await Auth.currentAuthenticatedUser({
+        bypassCache: false
       });
   
-    } catch (error) {
-      // If not authenticated, handle the error or leave the user state empty
-      console.error('Authentication error:', error);
+      console.log('user', user);
+  
+      const cognito_user = await Auth.currentAuthenticatedUser();
+  
+      setUser({
+        display_name: cognito_user.attributes.name,
+        handle: cognito_user.attributes.preferred_username
+      });
+    } catch (err) {
+      console.log(err);
     }
   };
+  
   
   // Example usage of checkAuth in a useEffect hook
   useEffect(() => {

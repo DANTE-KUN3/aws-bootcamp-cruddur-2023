@@ -24,10 +24,10 @@ export default function RecoverPage() {
   const onsubmit_confirm_code = async (event) => {
     event.preventDefault();
     setErrors('')
-    if (password==passwordAgain){
+    if (password===passwordAgain){
       Auth.forgotPasswordSubmit(username,code,password)
       .then((data)=>setFormState('success'))
-      .catch((err)=>setCognitoErros(err.message));
+      .catch((err)=>setErrors(err.message));
 
     } else {
       setErrors('Passwords do not match')
@@ -128,13 +128,13 @@ export default function RecoverPage() {
     }
 
   let form;
-  if (formState == 'send_code') {
+  if (formState === 'send_code') {
     form = send_code()
   }
-  else if (formState == 'confirm_code') {
+  else if (formState === 'confirm_code') {
     form = confirm_code()
   }
-  else if (formState == 'success') {
+  else if (formState ==='success') {
     form = success()
   }
 
