@@ -10,9 +10,7 @@ tasks:
       unzip awscliv2.zip
       sudo ./aws/install
       aws --version  # Verify the AWS CLI installation
-    command:
-      export GITPOD_IP=$(curl ifconfig.me)
-      # Your AWS CLI command here
+ 
 
   - name: psql
     init: |
@@ -24,6 +22,10 @@ tasks:
     command:
       export GITPOD_IP=$(curl ifconfig.me)
       source "$THEIA_WORKSPACE_ROOT/backend-flask/bin/rds-update-sg-rule" 
+      
+      
+      cd $THEIA_WORKSPACE_ROOT
+
 
   - name: react-js
     command:
