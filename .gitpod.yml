@@ -17,7 +17,7 @@ tasks:
       cd /workspace
       # Install PostgreSQL client (psql)
       sudo apt-get update
-      sudo apt-get install -y postgresql-client
+      sudo apt-get install -y postgresql-client-13 libpq-dev
       psql --version  # Verify the psql installation
     command: |
       export GITPOD_IP=$(curl ifconfig.me)
