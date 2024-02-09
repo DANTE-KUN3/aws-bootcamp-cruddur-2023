@@ -1,24 +1,24 @@
 tasks:
-  - name: aws-cli-and-psql
-    env:
-      AWS_CLI_AUTO_PROMPT: on-partial
+  - name: aws-cli
+    command: tmux new-session -d -s aws-cli 'bash'
+    openIn: editor
     init: |
-      cd /workspace
-
+      cd $THEIA_WORKSPACE_ROOT
       # Install AWS CLI
       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
       unzip awscliv2.zip
       sudo ./aws/install
       aws --version  # Verify the AWS CLI installation
 
+  - name: psql
+    command: tmux new-window -n psql 'psql -h <host> -U <username> <database>'
+    openIn: editor
+    init: |
+      cd $THEIA_WORKSPACE_ROOT
       # Install PostgreSQL client (psql)
       sudo apt-get update
       sudo apt-get install -y postgresql-client
       psql --version  # Verify the psql installation
-    
-    command:
-      export GITPOD_IP=$(curl ifconfig.me)
-      source "$THEIA_WORKSPACE_ROOT/backend-flask/bin/rds-update-sg-rule" 
 
   - name: react-js
     command:
