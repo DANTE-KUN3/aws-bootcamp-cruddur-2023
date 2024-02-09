@@ -22,7 +22,8 @@
       sudo apt-get install -y postgresql-client
       psql --version  # Verify the psql installation
     command:
-      # Your PostgreSQL command here
+      export GITPOD_IP=$(curl ifconfig.me)
+      source "$THEIA_WORKSPACE_ROOT/backend-flask/bin/rds-update-sg-rule" 
 
   - name: react-js
     command:
