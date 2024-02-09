@@ -19,7 +19,7 @@ tasks:
       sudo apt-get update
       sudo apt-get install -y postgresql-client
       psql --version  # Verify the psql installation
-    command:
+    command: |
       export GITPOD_IP=$(curl ifconfig.me)
       source "$THEIA_WORKSPACE_ROOT/backend-flask/bin/rds-update-sg-rule" 
       
