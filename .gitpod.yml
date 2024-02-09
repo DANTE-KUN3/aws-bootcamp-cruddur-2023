@@ -1,4 +1,4 @@
-"tasks:
+tasks:
   - name: aws-cli
     env:
       AWS_CLI_AUTO_PROMPT: on-partial
@@ -43,4 +43,4 @@ ports:
     visibility: public
   - name: xray-daemon
     port: 2000
-    visibility: public"
+    visibility: public
