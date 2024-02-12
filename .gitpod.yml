@@ -10,7 +10,8 @@ tasks:
       unzip awscliv2.zip
       sudo ./aws/install
       aws --version  # Verify the AWS CLI installation
- 
+           
+      cd $THEIA_WORKSPACE_ROOT
 
   - name: psql
     init: |
@@ -19,6 +20,8 @@ tasks:
       sudo apt-get update
       sudo apt-get install -y postgresql-client-13 libpq-dev
       psql --version  # Verify the psql installation
+           
+      cd $THEIA_WORKSPACE_ROOT
     command: |
       export GITPOD_IP=$(curl ifconfig.me)
       source "$THEIA_WORKSPACE_ROOT/backend-flask/bin/rds-update-sg-rule" 
@@ -30,7 +33,7 @@ tasks:
   - name: react-js
     command:
       cd frontend-react-js && npm i
-
+      
 vscode:
   extensions:
     - 42Crunch.vscode-openapi
