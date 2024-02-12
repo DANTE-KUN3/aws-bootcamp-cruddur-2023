@@ -18,17 +18,7 @@ def query_wrap_array(template):
     """
     return sql
 
-def get_connection():
-    connection_url = os.getenv("CONNECTION_URL")
-    pool = ConnectionPool(connection_url)
-    
 
-# Usage example:
-# conn = get_connection()
-# cursor = conn.cursor()
-# cursor.execute(query_wrap_objects('SELECT * FROM my_table'))
-# rows = cursor.fetchall()
-# for row in rows:
-#     print(row)
-# cursor.close()
-# pool.putconn(conn)
+connection_url = os.getenv("CONNECTION_URL")
+pool = ConnectionPool(connection_url)
+    
