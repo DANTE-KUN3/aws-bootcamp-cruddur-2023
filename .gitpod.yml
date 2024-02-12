@@ -13,22 +13,19 @@ tasks:
            
       cd $THEIA_WORKSPACE_ROOT
 
-  - name: psql
+  - name: postgres
     init: |
-      cd /workspace
+      
       # Install PostgreSQL client (psql)
       sudo apt-get update
-      sudo apt-get install -y postgresql-client-13 libpq-dev
+      sudo apt-get install -y postgresql-client
       psql --version  # Verify the psql installation
-           
-      cd $THEIA_WORKSPACE_ROOT
     command: |
       export GITPOD_IP=$(curl ifconfig.me)
       source "$THEIA_WORKSPACE_ROOT/backend-flask/bin/rds-update-sg-rule" 
       
       
-      cd $THEIA_WORKSPACE_ROOT
-
+      
 
   - name: react-js
     command:
