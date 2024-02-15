@@ -17,6 +17,8 @@ import {
   RouterProvider
 } from "react-router-dom";
 
+import { Amplify } from 'aws-amplify';
+
 Amplify.configure({
   "aws_project_region":process.env.REACT_APP_AWS_PROJECT_REGION,
   "aws_cognito_region":process.env.REACT_APP_AWS_COGNITO_REGION,
