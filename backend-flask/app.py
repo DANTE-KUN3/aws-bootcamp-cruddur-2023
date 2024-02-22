@@ -197,7 +197,7 @@ def data_create_message():
 @app.route("/api/activities/home", methods=['GET'])
 def data_home():
 
-  access_token = CognitoJwtToken.extract_access_token(request.headers)
+  access_token = extract_access_token(request.headers)
   try:
     claims=token_service.verify(access_token)
     app.logger.debug("authenticated")
@@ -207,6 +207,7 @@ def data_home():
   except TokenVerifyError as e:
     app.logger.debug(e)
     app.logger.debug("unauthenicated")
+    data = HomeActivities.run()
   return data, 200
 
 @app.route("/api/activities/notifications", methods=['GET'])
